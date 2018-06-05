@@ -1,0 +1,31 @@
+HoffmanKey
+
+Features of HoffmanKey and Provisions for those features
+
+1) Developer Signup -> Through our servers -> we will use PayPal API and SQL
+2) User Product Purchasing -> Directly through PayPal
+3) User License Key retrieval -> Through our servers -> PayPal and Gmail API
+4) Login -> Through our servers
+
+License Features
+
+1) Protection against multiple uses of the same key at the same time
+2) License Keys that possibly not necessarily expire (ie. subscription based)
+
+Bad Implementation
+
+imports...
+hoffmankey license check
+code
+
+Easily Piratable
+
+Good Implementation
+
+1) obfuscation
+2) cython to remove interpreter step.
+3) low level computations done on server
+
+    imports...
+    hoffmankey license check
+    code with functionality protected by hoffmankey
