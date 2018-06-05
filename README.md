@@ -1,5 +1,3 @@
 # HoffmanKey
-Python Licensing and Payment made simple
-Creators:
-David Kerrigan
-Jacob Hoffman
+Python Licensing and Payment Made Simple <br />
+Creators: David Kerrigan, Jacob Hoffman
