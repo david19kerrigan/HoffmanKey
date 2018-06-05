@@ -1,2 +1,2 @@
 # HoffmanKey
-Python Script Licensing and Payment Made Simple
+Python Licensing and Payment made simple
