@@ -16,12 +16,12 @@ def testiter():
     example = "what vals to change? ie A 1 B 0 C[1:0] 2?"
     exit = "type \""+escapeseq+"\" to finish : "
     initvals = raw_input(example + exit)
-    if initvals == escapeseq : return False
+    if initvals == escapeseq : return False                             #puzzle0
     vals = initvals.split(" ")
     for i in range(len(vals)//2):
         wr(vals[2*i] + "<=" + vals[2*i+1]+";")
     wr("@(posedge clock);")
-    return True
+    return True                                                         #puzzle1 A
 
 #writes a string with good tabbing
 def wr(string):
@@ -37,7 +37,7 @@ def wr(string):
 title = raw_input("enter name of file to edit or create : ")
 file = open(title,"a")  
 posedge = raw_input("If you only want to make a few posedges type \"yes\" now. Otherwise press enter : ")
-if (posedge in ["yes","y","YES","Y"]):
+if (posedge in ["yes","y","YES","Y"]):                                  #puzzle2 A
     while testiter() : continue
 else : 
     #Makes Test Module Header
@@ -45,7 +45,7 @@ else :
     mac = raw_input("enter test module macro : ")
     testmodule = raw_input("enter test module name ie. additionTester : ")
     tm=0
-    wr("//place \"`define " + mac +"\" in your code to run this test")
+    wr("//place \"`define " + mac +"\" in your code to run this test")  #puzzle3 A
     wr("`ifdef "+ mac )
     wr("module {}();".format(testmodule))
     tm=1
@@ -57,16 +57,17 @@ else :
     #Makes the input and output logic
     normlogic = "logic clock,reset;"
     wr(normlogic)
-    logicstring = raw_input("enter wire sizes of inputs and "+
+    logicstring = raw_input("enter wire sizes of inputs and "+          #puzzle4 A
         "outputs ie. A,B 1 C 2 D,E 3 : ")
-    logiclist = logicstring.split(" ")
+    logiclist = logicstring.split(" ")                                  #puzzle5 A
     for i in range(len(logiclist)//2):
+        one = 1;
         logicvars = logiclist[2*i]
-        logicwires = int(logiclist[2*i+1]) - 1
+        logicwires = int(logiclist[2*i+1]) - one                        #puzzle6
         wirestring = " "
         #identify quantity of wires
         if (logicwires != 0): wirestring = "["+str(logicwires)+":0] "
-        if (logicwires == 0): logicvars = logicvars.replace("clock",",").replace("reset",",").replace(",,","")
+        if (logicwires == 0): logicvars = logicvars.replace("clock",",").replace("reset",",").replace(",,","")  #puzzle7
         if (logicvars == ",") : wr("logic"+wirestring + logicvars+";")
         
     #Makes the module
@@ -78,7 +79,7 @@ else :
     tm = 2
     wr("clock=0;")
     wr("// Initialize the clock to 0")
-    wr("forever #10 clock = ~clock; // Every #10, invert the clock")
+    wr("forever #10 clock = ~clock; // Every #10, invert the clock")    #puzzle8
     tm = 1
     wr("end")
     wr("initial begin")
@@ -92,7 +93,7 @@ else :
     formatpart = formatpart + "\","
     tm=2
     wr("$display(\"" + testmodule + "\");")
-    wr("$monitor($time,,"+formatpart+variables+");");
+    wr("$monitor($time,,"+formatpart+variables+");");                   #puzzle9
 
     #Flips the reset up and down at the start    
     wr("reset <= 1;")
