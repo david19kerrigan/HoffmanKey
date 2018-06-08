@@ -1,0 +1,18 @@
+The Process should be simple for developers. we must let developers insert puzzles
+where they wish.
+
+A puzzle is a function that returns a constant
+
+we must have a library with a puzzle function
+library - hoffmankey.py
+
+    Developer Procedure :
+1) puzzle(name,vars) - developer uses this function in actual code
+2) developer defines a function in puzzles.py with given name and vars as params.
+3) developer returns some solution from the function.
+
+Once the developer marks up there code like the following, they can test that
+their own code works, and then they will be able to use our software to 
+distribute their code.
+
+In fact, we may be in verbal communication with the developer through the process.

@@ -16,8 +16,8 @@ def testiter():
     example = "what vals to change? ie A 1 B 0 C[1:0] 2?"
     exit = "type \""+escapeseq+"\" to finish : "
     initvals = raw_input(example + exit)
-    anwswer = puzzle0(initvals,escapeseq)
-    if !answer : return answer                                          #puzzle0
+    answer = puzzle0(initvals,escapeseq)
+    if not answer : return answer                                          #puzzle0
     vals = initvals.split(" ")
     for i in range(len(vals)//2):
         wr(vals[2*i] + "<=" + vals[2*i+1]+";")
@@ -66,7 +66,7 @@ else :
         wirestring = " "
         #identify quantity of wires
         if (logicwires != 0): wirestring = "["+str(logicwires)+":0] "
-        if (logicwires == 0): logicvars = logicvars.replace("clock",",").replace("reset",",").replace(",,","")  #puzzle7
+        if (logicwires == 0): logicvars = puzzle7(logicvars)  #puzzle7
         if (logicvars == ",") : wr("logic"+wirestring + logicvars+";")
         
     #Makes the module
@@ -78,7 +78,7 @@ else :
     tm = 2
     wr("clock=0;")
     wr("// Initialize the clock to 0")
-    wr("forever #10 clock = ~clock; // Every #10, invert the clock")    #puzzle8
+    wr(puzzle8())    #puzzle8
     tm = 1
     wr("end")
     wr("initial begin")
@@ -92,7 +92,7 @@ else :
     formatpart = formatpart + "\","
     tm=2
     wr("$display(\"" + testmodule + "\");")
-    wr("$monitor($time,,"+formatpart+variables+");");                   #puzzle9
+    wr(puzzle9(formatpart,variables));                   #puzzle9
 
     #Flips the reset up and down at the start    
     wr("reset <= 1;")
