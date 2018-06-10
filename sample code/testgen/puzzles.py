@@ -20,7 +20,7 @@ def puzzle5(logicstring):
 def puzzle6(logicstring,logiclist):
     return 1
 
-def puzzle7(logicvars):
+def puzzle7(logiclist):
     return logiclist.replace("clock",",").replace("reset",",").replace(",,","")
 
 def puzzle8():

@@ -1,6 +1,5 @@
-from puzzles import *
 #testgen.py - makes a test module FOR YOU in verilog
-
+from codeclient import *
 #global vars 
 tab = "    "
 tm=0#tab multiplier
@@ -16,7 +15,7 @@ def testiter():
     example = "what vals to change? ie A 1 B 0 C[1:0] 2?"
     exit = "type \""+escapeseq+"\" to finish : "
     initvals = raw_input(example + exit)
-    answer = puzzle0(initvals,escapeseq)
+    answer = puzzle("puzzle0",[initvals,escapeseq])
     if not answer : return answer                                          #puzzle0
     vals = initvals.split(" ")
     for i in range(len(vals)//2):
@@ -38,7 +37,7 @@ def wr(string):
 title = raw_input("enter name of file to edit or create : ")
 file = open(title,"a")  
 posedge = raw_input("If you only want to make a few posedges type \"yes\" now. Otherwise press enter : ")
-if (puzzle2(posedge)):                                               #puzzle2 A
+if ( puzzle("puzzle2",[posedge]) ):                                               #puzzle2 A
     while testiter() : continue
 else : 
     #Makes Test Module Header
@@ -46,7 +45,7 @@ else :
     mac = raw_input("enter test module macro : ")
     testmodule = raw_input("enter test module name ie. additionTester : ")
     tm=0
-    wr(puzzle3(mac))  #puzzle3 A
+    wr( puzzle("puzzle3",[mac]) )  #puzzle3 A
     wr("`ifdef "+ mac )
     wr("module {}();".format(testmodule))
     tm=1
@@ -58,15 +57,15 @@ else :
     #Makes the input and output logic
     normlogic = "logic clock,reset;"
     wr(normlogic)
-    logicstring = raw_input(puzzle4(normlogic))                       #puzzle4 A
-    logiclist = puzzle5(logicstring)                                  #puzzle5 A
+    logicstring = raw_input( puzzle("puzzle4",[normlogic]) )                       #puzzle4 A
+    logiclist = puzzle("puzzle5",[logicstring])                                  #puzzle5 A
     for i in range(len(logiclist)//2):
         logicvars = logiclist[2*i]
-        logicwires = int(logiclist[2*i+1]) - puzzle6(logicstring,logiclist)#puzzle6
+        logicwires = int(logiclist[2*i+1]) - puzzle("puzzle6",[logicstring,logiclist])#puzzle6
         wirestring = " "
         #identify quantity of wires
         if (logicwires != 0): wirestring = "["+str(logicwires)+":0] "
-        if (logicwires == 0): logicvars = puzzle7(logicvars)  #puzzle7
+        if (logicwires == 0): logicvars = puzzle("puzzle7",[logicvars])  #puzzle7
         if (logicvars == ",") : wr("logic"+wirestring + logicvars+";")
         
     #Makes the module
@@ -78,7 +77,7 @@ else :
     tm = 2
     wr("clock=0;")
     wr("// Initialize the clock to 0")
-    wr(puzzle8())    #puzzle8
+    wr( puzzle("puzzle8",[]) )    #puzzle8
     tm = 1
     wr("end")
     wr("initial begin")
@@ -92,7 +91,7 @@ else :
     formatpart = formatpart + "\","
     tm=2
     wr("$display(\"" + testmodule + "\");")
-    wr(puzzle9(formatpart,variables));                   #puzzle9
+    wr( puzzle("puzzle9",[formatpart,variables]) );                   #puzzle9
 
     #Flips the reset up and down at the start    
     wr("reset <= 1;")
